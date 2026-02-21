@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="O Impostor - Restaurante contemporâneo na Lourinhã. Petiscos modernos, arte local e uma experiência única.">
+    <title>O Impostor | Restaurante na Lourinhã</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        :root {
+            --h1-font: 4.8rem;
+            --h2-font: 3.5rem;
+            --p-font: 1rem;
+            --bg-color: #000000;
+            --text-color: #fff;
+            --main-color: #9e9e9e;
+            --second-color: #111111;
+            --border: rgba(255,255,255,0.08);
+            --font-display: "Playfair Display", serif;
+            --font-body: "Merriweather", serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 8%;
+            z-index: 1000;
+            transition: background 0.4s ease, padding 0.4s ease, transform 0.4s ease;
+        }
+
+        header.sticky {
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 14px 8%;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header.hide {
+            transform: translateY(-100%);
+        }
+
+        .logo img {
+            width: 140px;
+            height: auto;
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 32px;
+        }
+
+        .navlinks a {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s ease;
+        }
+
+        .navlinks a:hover { color: var(--main-color); }
+
+        .right-h {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-r {
+            display: inline-block;
+            padding: 10px 24px;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-color);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-r:hover {
+            background: var(--main-color);
+            border-color: var(--main-color);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        #menu-icon {
+            font-size: 28px;
+            color: var(--text-color);
+            cursor: pointer;
+            display: none;
+            z-index: 10001;
+        }
+
+        /* ── HOME ── */
+        .home {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 2rem;
+            padding: 120px 8% 80px;
+            overflow: hidden;
+        }
+
+        .home::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(120,185,124,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .home-left h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 5vw, var(--h1-font));
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-left h1 em {
+            font-style: italic;
+            color: var(--main-color);
+        }
+
+        .home-left p {
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2.5rem;
+        }
+
+        .left-in {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .left-content h5 {
+            font-family: var(--font-display);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 10px;
+        }
+
+        .r-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .r-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            font-size: 15px;
+            color: var(--text-color);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .r-icons a:hover {
+            background: var(--main-color);
+            border-color: var(--main-color);
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .home-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-right img {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 30px 60px rgba(120,185,124,0.12));
+        }
+
+        /* ── SECTION BASE ── */
+        section {
+            padding: 90px 8%;
+            scroll-margin-top: 80px;
+        }
+
+        /* ── FACHADA ── */
+        .fachada {
+            padding: 0 8% 80px;
+        }
+
+        .foto-fachada img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            border: 1px solid var(--border);
+        }
+
+        /* ── MENU ── */
+        .menu {
+            background: var(--bg-color);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .menu-header h2 {
+            font-family: var(--font-display);
+            font-size: var(--h2-font);
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .menu-header p {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .menu-pdf {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .menu-pdf img {
+            max-width: 720px;
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            display: block;
+        }
+
+        /* ── GALERIA ── */
+        .galeria-section { background: var(--bg-color); }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--main-color);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, var(--h2-font));
+            font-weight: 400;
+            margin-bottom: 50px;
+            line-height: 1.2;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .galeria img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .galeria img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        /* ── LIGHTBOX ── */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-img-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            max-width: 88vw;
+            max-height: 88vh;
+            border-radius: 14px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+        .lightbox-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10;
+        }
+
+        .lightbox-btn:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        .lightbox-prev { right: calc(100% + 16px); }
+        .lightbox-next { left: calc(100% + 16px); }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 2px;
+        }
+
+        /* ── SOBRE NÓS ── */
+        .sobre-nos-section {
+            background: var(--second-color);
+            border-top: 1px solid var(--border);
+        }
+
+        .sobre-nos {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .sobre-nos h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, var(--h1-font));
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
+
+        .sobre-nos .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--main-color);
+            margin: 0 auto 40px;
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+
+        .sobre-nos-section:hover .divider {
+            width: 120px;
+        }
+
+        .sobre-nos p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: rgba(255,255,255,0.72);
+            margin-bottom: 1.4rem;
+        }
+
+        .sobre-nos p:last-child { margin-bottom: 0; }
+
+        /* ── CONTACTOS ── */
+        .contactos {
+            background: var(--bg-color);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contactos h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, var(--h1-font));
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .contactos .subtitulo {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .contactos .linha {
+            width: 48px;
+            height: 2px;
+            background: var(--main-color);
+            margin: 0 auto 50px;
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+
+.contactos:hover .linha {
+    width: 120px;
+}
+
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 50px;
+        }
+
+        .social-container a {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            font-size: 18px;
+            color: var(--text-color);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .social-container a:hover {
+            transform: translateY(-4px);
+            background: var(--main-color);
+            border-color: var(--main-color);
+            color: #000;
+        }
+
+        .contactos-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .item-contacto {
+            width: 100%;
+            padding: 22px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .item-contacto:hover {
+            transform: translateY(-4px);
+            border-color: var(--main-color);
+        }
+
+        .icone { font-size: 24px; flex-shrink: 0; }
+
+        .item-contacto div { text-align: left; }
+
+        .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 4px;
+        }
+
+        .info-valor {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .telefone-link {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: inherit;
+            width: 100%;
+        }
+
+        .map-link {
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .map-link:hover { color: var(--main-color); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--second-color);
+            border-top: 1px solid var(--border);
+            padding: 32px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        footer .logo img { width: 100px; }
+
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── MOBILE NAV ── */
+        @media (max-width: 992px) {
+            #menu-icon { display: block; }
+
+            .navlinks {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 260px;
+                height: 100vh;
+                background: #0a0a0a;
+                flex-direction: column;
+                padding: 80px 36px 40px;
+                gap: 28px;
+                transition: right 0.45s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            .navlinks.active { right: 0; }
+
+            .navlinks a { font-size: 1.1rem; }
+
+            .btn-r { display: none; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 992px) {
+            .home {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-top: 110px;
+                text-align: center;
+            }
+
+            .home-right { order: -1; }
+
+            .home-right img { max-width: 300px; }
+
+            .left-in { justify-content: center; }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --h1-font: 2.8rem;
+                --h2-font: 2rem;
+                --p-font: 0.95rem;
+            }
+
+            section { padding: 70px 6% 60px; }
+
+            .fachada { padding: 0 6% 60px; }
+
+            .galeria { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+            footer { flex-direction: column; text-align: center; }
+
+            .lightbox-prev,
+            .lightbox-next {
+                display: none;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .galeria { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="#home" class="logo">
+        <img src="Assets/image.png" alt="O Impostor - Restaurante na Lourinhã">
+    </a>
+
+    <ul class="navlinks" id="navlinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#fachada" class="nav-link">Fachada</a>
+        <a href="#menu" class="nav-link">Menu</a>
+        <a href="#galeria" class="nav-link">Galeria</a>
+        <a href="#sobre-nos" class="nav-link">Sobre nós</a>
+        <a href="#contactos" class="nav-link">Contactos</a>
+    </ul>
+
+    <div class="right-h">
+        <a href="#contactos" class="btn-r">Fale Connosco</a>
+        <i class="ri-menu-line" id="menu-icon" aria-label="Abrir menu"></i>
+    </div>
+</header>
+
+<!-- HOME -->
+<section class="home" id="home">
+    <div class="home-left">
+        <h1>Uma Cozinha de<br><em>Audácia & Emoção</em></h1>
+        <p>Petiscos modernos feitos para partilhar,<br>num espaço onde a gastronomia encontra a arte.</p>
+        <div class="left-in">
+            <div class="left-content">
+                <h5>Segue-nos</h5>
+                <div class="r-icons">
+                    <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-right">
+        
+    </div>
+</section>
+
+<!-- FACHADA -->
+<section class="fachada" id="fachada">
+    <div class="foto-fachada">
+        <img src="Assets/DSC03030.jpg" alt="Fachada do restaurante O Impostor">
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+    <div class="menu-header">
+        <h2>Menu</h2>
+        <p>Atualizado regularmente</p>
+    </div>
+    <div class="menu-pdf">
+        <img src="Assets/WhatsApp Image 2025-11-02 at 21.00.38 (1).jpeg" alt="Menu página 1">
+        <img src="Assets/WhatsApp Image 2025-11-02 at 21.00.39 (2).jpeg" alt="Menu página 2">
+        <img src="Assets/WhatsApp Image 2025-11-02 at 21.00.39 (3).jpeg" alt="Menu página 3">
+    </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria-section" id="galeria">
+    <span class="section-label">Momentos</span>
+    <h2 class="section-title">Galeria</h2>
+    <div class="galeria">
+        <img src="Assets/DSC03043.jpg" alt="Restaurante">
+        <img src="Assets/DSC03007.jpg" alt="Restaurante">
+        <img src="Assets/bife.JPG" alt="Prato de bife">
+        <img src="Assets/ervilhas.JPG" alt="Prato de ervilhas">
+        <img src="Assets/DSC03046.JPG" alt="Restaurante">
+        <img src="Assets/DSC03086.jpg" alt="Restaurante">
+        <img src="Assets/polvo.JPG" alt="Prato de polvo">
+        <img src="Assets/DSC03144.jpg" alt="Restaurante">
+        <img src="Assets/IMG_0004.JPG" alt="Restaurante">
+        <img src="Assets/IMG_0009.JPG" alt="Restaurante">
+        <img src="Assets/DSC05007.jpg" alt="Restaurante">
+        <img src="Assets/IMG_0012.JPG" alt="Restaurante">
+        <img src="Assets/IMG_0007.JPG" alt=" Restaurante">
+        <img src="Assets/IMG_0018.JPG" alt="Restaurante">
+        <img src="Assets/DSC03156.JPG" alt="Restaurante">
+        
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-img-wrap">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Fechar"><i class="ri-close-line"></i></button>
+        <button class="lightbox-btn lightbox-prev" id="lightbox-prev" aria-label="Anterior"><i class="ri-arrow-left-s-line"></i></button>
+        <img src="" alt="Imagem ampliada">
+        <button class="lightbox-btn lightbox-next" id="lightbox-next" aria-label="Seguinte"><i class="ri-arrow-right-s-line"></i></button>
+        <span class="lightbox-counter" id="lightbox-counter"></span>
+    </div>
+</div>
+
+<!-- SOBRE NÓS -->
+<section class="sobre-nos-section" id="sobre-nos">
+    <div class="sobre-nos">
+        <h2>Sobre Nós</h2>
+        <div class="divider"></div>
+        <p>O Impostor é um restaurante contemporâneo e descontraído, onde a palavra-chave é partilha. As doses são concebidas para serem divididas, criando uma atmosfera informal e acolhedora. O nosso menu vai desde petiscos modernos até sabores mais tradicionais, sendo alterado regularmente para oferecer sempre algo novo e surpreendente.</p>
+        <p>Mas o Impostor vai além da gastronomia. O restaurante também funciona como uma galeria de arte, com obras de artistas locais em exibição, todas disponíveis para venda. Queremos que o espaço seja um ponto de encontro vibrante, onde a cultura, a música e a boa comida se unem para criar uma experiência única e acolhedora.</p>
+        <p>Venham conhecer-nos e deixem-se levar por uma experiência feita de audácia, arrojo e emoção.</p>
+    </div>
+</section>
+
+<!-- CONTACTOS -->
+<section class="contactos" id="contactos">
+    <h2>Contactos</h2>
+    <p class="subtitulo">Estamos disponíveis para o ajudar</p>
+    <div class="linha"></div>
+
+    <div class="social-container">
+        <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="TikTok"><i class="ri-tiktok-line"></i></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="Facebook"><i class="ri-facebook-line"></i></a>
+    </div>
+
+    <div class="contactos-grid">
+        <div class="item-contacto destaque">
+            <a href="tel:+351912824888" class="telefone-link">
+                <span class="icone">📞</span>
+                <div>
+                    <p class="info-label">Telefone</p>
+                    <p class="info-valor">+351 912 824 888</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="item-contacto">
+            <span class="icone">📍</span>
+            <div>
+                <p class="info-label">Morada</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rua+João+Luís+Moura+81,+Lourinhã"
+                   target="_blank" rel="noopener" class="map-link">
+                    Rua João Luís Moura 81, Lourinhã
+                </a>
+            </div>
+        </div>
+
+        <div class="item-contacto">
+            <span class="icone">🕘</span>
+            <div>
+                <p class="info-label">Horário</p>
+                <p class="info-valor">Ter–Dom: 12h – 15h &amp; 19h – 23h</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <a href="#home" class="logo">
+        <img src="Assets/image.png" alt="O Impostor">
+    </a>
+    <p>© 2025 O Impostor · Restaurante na Lourinhã</p>
+</footer>
+
+<script>
+    // ── HEADER: sticky + hide on scroll ──
+    const header = document.querySelector("header");
+    const menuIcon = document.getElementById("menu-icon");
+    const navlinks = document.getElementById("navlinks");
+    let lastScroll = 0;
+
+    window.addEventListener("scroll", () => {
+        const current = window.pageYOffset;
+        header.classList.toggle("sticky", current > 80);
+        if (current > lastScroll && current > 160) {
+            header.classList.add("hide");
+        } else {
+            header.classList.remove("hide");
+        }
+        lastScroll = current;
+    });
+
+    // ── MENU MOBILE ──
+    menuIcon.addEventListener("click", () => {
+        navlinks.classList.toggle("active");
+        menuIcon.className = navlinks.classList.contains("active")
+            ? "ri-close-line"
+            : "ri-menu-line";
+    });
+
+    // Fecha menu ao clicar num link
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            navlinks.classList.remove("active");
+            menuIcon.className = "ri-menu-line";
+        });
+    });
+
+    // ── LIGHTBOX com navegação ──
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    const lightboxCounter = document.getElementById("lightbox-counter");
+    const galleryImages = [...document.querySelectorAll(".galeria img")];
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = galleryImages[index].src;
+        lightboxCounter.textContent = `${index + 1} / ${galleryImages.length}`;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+        openLightbox(currentIndex);
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % galleryImages.length;
+        openLightbox(currentIndex);
+    }
+
+    galleryImages.forEach((img, i) => {
+        img.addEventListener("click", () => openLightbox(i));
+    });
+
+    document.getElementById("lightbox-close").addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeLightbox();
+    });
+
+    document.getElementById("lightbox-prev").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showPrev();
+    });
+
+    document.getElementById("lightbox-next").addEventListener("click", (e) => {
+        e.stopPropagation();
+        showNext();
+    });
+
+    lightbox.addEventListener("click", closeLightbox);
+
+    document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("active")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "ArrowRight") showNext();
+    });
+</script>
+</body>
+</html>
